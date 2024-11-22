@@ -56,7 +56,7 @@ class INatDataset(ImageFolder):
 def imgFolder_mapping(data_path,):
     folder_classes = sorted(os.listdir(os.path.join(data_path, 'train')))
     folder_to_model_idx = {}
-    original_classes_names = np.genfromtxt(r'C:/Users/chunchi/Downloads/MiniImageNet/LOC_synset_mapping.txt', delimiter='!', dtype='str')
+    original_classes_names = np.genfromtxt(r'/content/ViT_Training/LOC_synset_mapping.txt', delimiter='!', dtype='str')
     original_classes_names = list(map(lambda x: x[0],map(str.split,original_classes_names)))
     for idx, name in enumerate(folder_classes):
         original_idx = original_classes_names.index(name)
@@ -64,7 +64,7 @@ def imgFolder_mapping(data_path,):
     return folder_to_model_idx
 
 def trans_idx(idx):
-    folder_to_model_idx = imgFolder_mapping(r'C:\\Users\\chunchi\\Downloads\\MiniImageNet')
+    folder_to_model_idx = imgFolder_mapping(r'/content/ViT_Training/')
     return folder_to_model_idx[idx]
     
 def build_dataset(is_train, args):
