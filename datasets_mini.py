@@ -64,7 +64,7 @@ def imgFolder_mapping(data_path,):
     return folder_to_model_idx
 
 def trans_idx(idx):
-    folder_to_model_idx = imgFolder_mapping(r'/content/ViT_Training/')
+    folder_to_model_idx = imgFolder_mapping(r'/content/drive/MyDrive/mini_imagenet')
     return folder_to_model_idx[idx]
     
 def build_dataset(is_train, args):
