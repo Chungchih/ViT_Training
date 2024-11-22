@@ -439,7 +439,9 @@ class QuantVisionTransformer(nn.Module):
             enable_wdm_noise=False,
             enable_linear_noise=False,
             num_wavelength=9,
-            channel_spacing=0.4):
+            channel_spacing=0.4,
+            pretrained_cfg=None,
+            pretrained_cfg_overlay=None):
         super().__init__()
         if wbits > 16:
             print("Use float weights.")
