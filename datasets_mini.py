@@ -66,7 +66,21 @@ def imgFolder_mapping(data_path,):
 def trans_idx(idx):
     folder_to_model_idx = imgFolder_mapping(r'/content/drive/MyDrive/mini_imagenet')
     return folder_to_model_idx[idx]
+
+import torch
+class build_dataset_preload(torch.utils.data.Dataset):
+    def __init__(self, is_train, path):
+        transform = build_transform(is_train,)
+        root = os.path.join(path, 'train' if is_train else 'val')
+        self.dataset = datasets.ImageFolder(root, transform=transform, target_transform=trans_idx)
+        self.data = [(image.to('cuda'), label) for image, label in self.dataset]
+
+    def __len__(self):
+        return len(self.data)
     
+    def __getitem__(self, index):
+        return self.data[index]  
+
 def build_dataset(is_train, args):
     transform = build_transform(is_train, args)
 
@@ -75,7 +89,7 @@ def build_dataset(is_train, args):
         nb_classes = 100
     elif args.data_set == 'IMNET':
         root = os.path.join(args.data_path, 'train' if is_train else 'val')
-        folder_to_model_idx = imgFolder_mapping(args.data_path)
+        #folder_to_model_idx = imgFolder_mapping(args.data_path)
         dataset = datasets.ImageFolder(root, transform=transform, 
                                        target_transform=trans_idx)
         nb_classes = 1000
