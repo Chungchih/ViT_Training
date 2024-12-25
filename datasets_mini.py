@@ -69,7 +69,7 @@ def trans_idx(idx):
 
 import torch
 class build_dataset_preload(torch.utils.data.Dataset):
-    def __init__(self, is_train, arge):
+    def __init__(self, is_train, args):
         transform = build_transform(is_train, args)
         root = os.path.join(args.data_path, 'train' if is_train else 'val')
         self.dataset = datasets.ImageFolder(root, transform=transform, target_transform=trans_idx)
