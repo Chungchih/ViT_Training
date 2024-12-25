@@ -33,8 +33,8 @@ def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
     print_freq = 10
 
     for samples, targets in metric_logger.log_every(data_loader, print_freq, header):
-        samples = samples.to(device, non_blocking=True)
-        targets = targets.to(device, non_blocking=True)
+        samples = samples.to(device, non_blocking=False)
+        targets = targets.to(device, non_blocking=False)
 
         #if mixup_fn is not None:
         #    samples, targets = mixup_fn(samples, targets)
